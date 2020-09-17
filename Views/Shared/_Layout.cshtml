@@ -31,9 +31,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Test">Test</a></li>
                     <li><a asp-area="" asp-controller="QA" asp-action="AskQuestion">Post a Question</a></li>
-                    <li><a asp-area="" asp-controller="QA" asp-action="ReadQuestions">Read Question</a></li>
+                    <li><a asp-area="" asp-controller="QA" asp-action="ReadQuestions">All Questions</a></li>
+
+
+
 
                 </ul>
             </div>
@@ -43,6 +45,14 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        @if (ViewBag.username != "")
+        {
+            <p align="right">You are logged in as: @ViewBag.username</p>
+        }
+        else
+        {
+            <a href="/home"> Please Login </a>
+        }
         @RenderBody()
         <hr />
         <footer>

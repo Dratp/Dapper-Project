@@ -1,0 +1,57 @@
+﻿@model Thread
+
+@{
+    ViewData["Title"] = "ReadAnswers";
+}
+
+<h2>Read Answers</h2>
+
+<h3>@Model.Q.Title</h3>
+<h4>Posted by: @Model.Q.Username</h4>
+<h6>Category: @Model.Q.Category</h6>
+
+<p>
+    @Model.Q.Detail
+</p>
+
+Answers:
+<br />
+<a href="/QA/WriteAnswer?id=@Model.Q.ID"> Add an Answer:  </a>
+<br />
+
+<table>
+
+    @foreach (Answers a in Model.A)
+    {
+    <tr>
+
+
+        <td>
+            @a.Detail
+
+        </td>
+
+        <td>
+            Posted by: @a.Username
+        </td>
+
+        <td>
+            Posted at: @a.Posted
+        </td>
+
+        <td>
+             Upvotes: <a href="/QA/UpVoteAnswer?answerID=@a.ID"> <input type="button" value="@a.UpVotes"/> </a>
+        </td>
+
+        @if (ViewBag.username == a.Username || ViewBag.username == Model.Q.Username)
+        {
+            <td>
+                <a href="/QA/RemoveAnswer?thisID=@a.ID">Delete</a>
+            </td>
+        }
+        </tr>
+
+    }
+
+</table>
+
